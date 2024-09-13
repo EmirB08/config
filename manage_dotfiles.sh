@@ -13,12 +13,16 @@ copy_to_repo() {
   done
 
   for folder in "${folders[@]}"; do
-    cp -r "$HOME/$folder" "$DOTFILES_DIR/"
+    rsync -av --exclude='plugins/*' "$HOME/$folder/" "$DOTFILES_DIR/$folder/"
   done
 
   for folder in "${config_folders[@]}"; do
-    cp -r "$CONFIG_DIR/$folder" "$DOTFILES_DIR/.config/"
+    rsync -av "$CONFIG_DIR/$folder/" "$DOTFILES_DIR/.config/$folder/"
   done
+
+  # Ensure the plugins folder exists but is empty
+  mkdir -p "$DOTFILES_DIR/.tmux/plugins"
+  touch "$DOTFILES_DIR/.tmux/plugins/.gitkeep"
 
   echo "Copied dotfiles to repository"
 }
@@ -29,11 +33,11 @@ copy_to_home() {
   done
 
   for folder in "${folders[@]}"; do
-    cp -r "$DOTFILES_DIR/$folder" "$HOME/"
+    rsync -av --exclude='plugins/*' "$DOTFILES_DIR/$folder/" "$HOME/$folder/"
   done
 
   for folder in "${config_folders[@]}"; do
-    cp -r "$DOTFILES_DIR/.config/$folder" "$CONFIG_DIR/"
+    rsync -av "$DOTFILES_DIR/.config/$folder/" "$CONFIG_DIR/$folder/"
   done
 
   echo "Copied dotfiles to home directory"
