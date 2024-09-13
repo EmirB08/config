@@ -1,6 +1,6 @@
 # Backup
 
-Assumes a similar setup aready installed, does not include the necessary installs and dependencies. For more information on a minimal config, see [Josean's dev env files](https://github.com/josean-dev/dev-environment-files).
+Assumes a similar setup aready installed, does not include the necessary installs and dependencies, nor the pluins for Tmux. For more information on a minimal config, see [Josean's dev env files](https://github.com/josean-dev/dev-environment-files).
 
 ## Included Configurations
 
