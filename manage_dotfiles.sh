@@ -3,7 +3,7 @@
 DOTFILES_DIR="$HOME/dotfiles"
 CONFIG_DIR="$HOME/.config"
 
-files=(".zshrc" ".wezterm.lua" ".tmux.conf" "p10k.zsh" ".zprofile")
+files=(".zshrc" ".wezterm.lua" ".tmux.conf" ".p10k.zsh" ".zprofile")
 folders=(".tmux")
 config_folders=("nvim" "skhd" "yabai")
 
