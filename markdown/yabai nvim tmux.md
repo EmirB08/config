@@ -2,65 +2,45 @@
 
 ## Tmux
 
-- **Resize Panes**:
-  - `Ctrl + j`: Resize pane down by 5 units
-  - `Ctrl + k`: Resize pane up by 5 units
-  - `Ctrl + l`: Resize pane right by 5 units
-  - `Ctrl + h`: Resize pane left by 5 units
+### Resize Panes
+- **Decrease Height**: `Ctrl-a + j`
+- **Increase Height**: `Ctrl-a + k`
+- **Increase Width**: `Ctrl-a + l`
+- **Decrease Width**: `Ctrl-a + h`
 
-bind-key -T copy-mode-vi 'v' send -X begin-selection # start selecting text with "v"
-bind-key -T copy-mode-vi 'y' send -X copy-selection # copy text with "y"
+### Neovim Tmux Navigation
+- **Left Pane**: `Ctrl + h`
+- **Lower Pane**: `Ctrl + j`
+- **Upper Pane**: `Ctrl + k`
+- **Right Pane**: `Ctrl + l`
+- **Previous Pane**: `Ctrl + \`
 
-yabai /skhdrc
+### Copy Mode
+- **Start Selection**: `Ctrl-a + v`
+- **Copy Selection**: `Ctrl-a + y`
 
-# change window focus within space
-alt - j : yabai -m window --focus south
-alt - k : yabai -m window --focus north
-alt - h : yabai -m window --focus west
-alt - l : yabai -m window --focus east
+## yabai/skhdrc
 
-#change focus between external displays (left and right)
-alt - i: yabai -m display --focus west
-alt - o: yabai -m display --focus east
+### Change Window Focus Within Space
+- **Focus South**: `alt - j`
+- **Focus North**: `alt - k`
+- **Focus West**: `alt - h`
+- **Focus East**: `alt - l`
 
-# rotate layout clockwise
-shift + alt - j : yabai -m space --rotate 90
-#rotate layout anti-clockwise
-shift + alt - h : yabai -m space --rotate 90-
+### Change Focus Between External Displays
+- **Focus West Display**: `alt - i`
+- **Focus East Display**: `alt - o`
 
-# maximize a window
-shift + alt - k : yabai -m window --toggle zoom-fullscreen
+### Window and Space Management
+- **Rotate Layout Clockwise**: `shift + alt - j`
+- **Rotate Layout Anti-clockwise**: `shift + alt - h`
+- **Maximize Window**: `shift + alt - k`
+- **Balance Windows**: `shift + alt - l`
 
-# balance out tree of windows (resize to occupy same area)
-shift + alt - l : yabai -m space --balance
+### yabai Service Management
+- **Stop yabai**: `ctrl + alt - q`
+- **Start yabai**: `ctrl + alt - s`
+- **Restart yabai**: `ctrl + alt - r`
 
-# stop/start/restart yabai
-ctrl + alt - q : yabai --stop-service
-ctrl + alt - s : yabai --start-service
-ctrl + alt - r : yabai --restart-service
-
-" Maps <C-h/j/k/l> to switch vim splits in the given direction. If there are
-" no more windows in that direction, forwards the operation to tmux.
-" Additionally, <C-\> toggles between last active vim splits/tmux panes.
-
-if exists("g:loaded_tmux_navigator") || &cp || v:version < 700
-  finish
-endif
-let g:loaded_tmux_navigator = 1
-
-function! s:VimNavigate(direction)
-  try
-    execute 'wincmd ' . a:direction
-  catch
-    echohl ErrorMsg | echo 'E11: Invalid in command-line window; <CR> executes, CTRL-C quits: wincmd k' | echohl None
-  endtry
-endfunction
-
-if !get(g:, 'tmux_navigator_no_mappings', 0)
-  nnoremap <silent> <c-h> :<C-U>TmuxNavigateLeft<cr>
-  nnoremap <silent> <c-j> :<C-U>TmuxNavigateDown<cr>
-  nnoremap <silent> <c-k> :<C-U>TmuxNavigateUp<cr>
-  nnoremap <silent> <c-l> :<C-U>TmuxNavigateRight<cr>
-  nnoremap <silent> <c-\> :<C-U>TmuxNavigatePrevious<cr>
 
 
