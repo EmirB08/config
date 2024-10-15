@@ -1,4 +1,3 @@
-
 # Backup
 
 This script assumes a similar setup is already installed. It does not include the necessary installations, dependencies, or plugins for Tmux. For more information on a minimal config, see [Josean's dev env files](https://github.com/josean-dev/dev-environment-files).
@@ -15,26 +14,32 @@ This script assumes a similar setup is already installed. It does not include th
 
 ### Copying Files
 
-To manage these dotfiles, use the `manage_dotfiles.sh` script:
+To manage these dotfiles, use the `manage_dotfiles.sh` script. First, make the script executable:
 
-1. **To copy all files from your home directory to this repository**:
-   ```bash
-   ./manage_dotfiles.sh to-repo
-   ```
+```bash
+chmod +x manage_dotfiles.sh
+```
 
-2. **To copy a specific file from your home directory to this repository** (e.g., `.zshrc`):
-   ```bash
-   ./manage_dotfiles.sh to-repo .zshrc
-   ```
+Then, you can use the following commands:
 
-3. **To copy all files from this repository to your home directory**:
-   ```bash
-   ./manage_dotfiles.sh to-home
-   ```
+**Copy all files from your home directory to this repository**:
+```bash
+./manage_dotfiles.sh to-repo
+```
 
-4. **To copy a specific file from this repository to your home directory** (e.g., `.zshrc`):
-   ```bash
-   ./manage_dotfiles.sh to-home .zshrc
-   ```
+**Copy a specific file from your home directory to this repository** (e.g., `.zshrc`):
+```bash
+./manage_dotfiles.sh to-repo .zshrc
+```
+
+**Copy all files from this repository to your home directory**:
+```bash
+./manage_dotfiles.sh to-home
+```
+
+**Copy a specific file from this repository to your home directory** (e.g., `.zshrc`):
+```bash
+./manage_dotfiles.sh to-home .zshrc
+```
 
 ---
