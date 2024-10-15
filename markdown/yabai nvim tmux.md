@@ -1,46 +1,103 @@
 # Configuration Guide
 
-## Tmux
+## tmux
 
-### Resize Panes
-- **Decrease Height**: `Ctrl-a + j`
-- **Increase Height**: `Ctrl-a + k`
-- **Increase Width**: `Ctrl-a + l`
-- **Decrease Width**: `Ctrl-a + h`
+##### general
+###### create new window:
+`Ctrl-a + c`
+###### Next Window:
+`Ctrl-a + n`
+###### previous window:
+`Ctrl-a + p`
+###### list windows:
+`Ctrl-a + w`
+###### Detach Session:
+`Ctrl-a + d`
+###### split pane horizontally:
+`Ctrl-a + ø`
+###### split pane vertically:
+`Ctrl-a + æ`
+###### rename window:
+`Ctrl-a + ,`
+###### save current session (tmux-resurrect):
+`Ctrl-a + Ctrl-s`
+###### restore last saved session (tmux-resurrect):
+`Ctrl-a + Ctrl-r`
 
-### Neovim Tmux Navigation
-- **Left Pane**: `Ctrl + h`
-- **Lower Pane**: `Ctrl + j`
-- **Upper Pane**: `Ctrl + k`
-- **Right Pane**: `Ctrl + l`
-- **Previous Pane**: `Ctrl + \`
+##### resize panes
+###### decrease height:
+`Ctrl-a + j`
+###### increase height:
+`Ctrl-a + k`
+###### increase width:
+`Ctrl-a + l`
+###### decrease width:
+`Ctrl-a + h`
 
-### Copy Mode
-- **Start Selection**: `Ctrl-a + v`
-- **Copy Selection**: `Ctrl-a + y`
+##### navigation
+###### Left Pane:
+`Ctrl + h`
+###### lower pane:
+`Ctrl + j`
+###### upper pane:
+`Ctrl + k`
+###### right pane:
+`Ctrl + l`
+###### previous pane:
+`Ctrl + \`
+
+##### copy mode
+###### start selection:
+`Ctrl-a + v`
+###### copy selection:
+`Ctrl-a + y`
+
+##### commands
+###### attach to session:
+`tmux attach -t [session-name]`
+###### detach from session:
+`tmux detach`
+###### create new session:
+`tmux new -s [session-name]`
+###### list sessions:
+`tmux ls`
+###### kill session:
+`tmux kill-session -t [session-name]`
+###### rename session:
+`tmux rename-session -t [current-name] [new-name]`
 
 ## yabai/skhdrc
 
-### Change Window Focus Within Space
-- **Focus South**: `alt - j`
-- **Focus North**: `alt - k`
-- **Focus West**: `alt - h`
-- **Focus East**: `alt - l`
+##### change window focus within space
+###### focus south:
+`alt - j`
+###### focus north:
+`alt - k`
+###### focus west:
+`alt - h`
+###### focus east:
+`alt - l`
 
-### Change Focus Between External Displays
-- **Focus West Display**: `alt - i`
-- **Focus East Display**: `alt - o`
+##### change focus between external displays
+###### focus west display:
+`alt - i`
+###### focus east display:
+`alt - o`
 
-### Window and Space Management
-- **Rotate Layout Clockwise**: `shift + alt - j`
-- **Rotate Layout Anti-clockwise**: `shift + alt - h`
-- **Maximize Window**: `shift + alt - k`
-- **Balance Windows**: `shift + alt - l`
+##### window and space management
+###### rotate layout clockwise:
+`shift + alt - j`
+###### rotate layout anti-clockwise:
+`shift + alt - h`
+###### maximize window:
+`shift + alt - k`
+###### balance windows:
+`shift + alt - l`
 
-### yabai Service Management
-- **Stop yabai**: `ctrl + alt - q`
-- **Start yabai**: `ctrl + alt - s`
-- **Restart yabai**: `ctrl + alt - r`
-
-
-
+##### yabai service management
+###### stop yabai:
+`ctrl + alt - q`
+###### start yabai:
+`ctrl + alt - s`
+###### restart yabai:
+`ctrl + alt - r`

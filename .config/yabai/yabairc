@@ -1,30 +1,61 @@
-# default layout (can be bsp, stack or float)
-yabai -m config layout bsp
+#!/usr/bin/env sh
 
-# default layout (can be bsp, stack or float)
-yabai -m config layout bsp
+# sudo without password for yabai --load-sa
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
 
-# padding set to 12px
-yabai -m config top_padding 8 
-yabai -m config bottom_padding 8
-yabai -m config left_padding 8
-yabai -m config right_padding 8 
-yabai -m config window_gap 8
+# settings
+yabai -m config                                           \
+    layout                     bsp            \
+    window_shadow              off            \
+    window_opacity             on             \
+    window_opacity_duration    0.2            \
+    active_window_opacity      1.0            \
+    normal_window_opacity      0.85           \
+    window_animation_duration  0              \
+    window_animation_easing    ease_out_quint \
+    mouse_follows_focus        on             \
+    focus_follows_mouse        on             \
+    split_ratio                0.50           \
+    auto_balance               off            \
+    mouse_modifier             alt            \
+    mouse_action1              move           \
+    mouse_action2              resize         \
+    mouse_drop_action          swap           \
+    top_padding                8              \
+    bottom_padding             8              \
+    left_padding               8              \
+    right_padding              8              \
+    window_gap                 8
 
-# center mouse on window with focus
-yabai -m config mouse_follows_focus on
+# signals
+yabai -m signal --add event=window_created action="yabai -m window --focus \$YABAI_WINDOW_ID"
 
-# modifier for clicking and dragging with mouse
-yabai -m config mouse_modifier alt
-# set modifier + left-click drag to move window
-yabai -m config mouse_action1 move
-# set modifier + right-click drag to resize window
-yabai -m config mouse_action2 resize
+# rules
+yabai -m rule --add app="Visual Studio Code" space=1
+yabai -m rule --add app="Cursor" space=2
+yabai -m rule --add app="^Finder$" manage=on space=5
+yabai -m rule --add app="Preview" space=5
+yabai -m rule --add app="Cork" space=5
+yabai -m rule --add app="WezTerm" space=6
+yabai -m rule --add app="Warp" space=6
+yabai -m rule --add app="^Obsidian$" manage=on space=6
+yabai -m rule --add app="Brave Browser" space=7
+yabai -m rule --add app="ChatGPT" space=8
+yabai -m rule --add app="Safari" space=9
+yabai -m rule --add app="MongoDB Compass" space=9
+yabai -m rule --add app="Spotify" space=10
 
-
-# when window is dropped in center of another window, swap them (on edges it will split it)
-yabai -m mouse_drop_action swap
 
 yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add app="^System Information$" manage=off
+yabai -m rule --add app="^Activity Monitor$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
-yabai -m rule --add app="^Karabiner-Elements$" manage=off
+yabai -m rule --add app="^iPone Mirroring$" manage=off
+yabai -m rule --add app="^Trash$" manage=off
+yabai -m rule --add app="^Messages$" manage=off
+yabai -m rule --add app="^FaceTime$" manage=off
+yabai -m rule --add app="^Pika$" manage=off
+yabai -m rule --add app="Logi Options+" manage=off
+yabai -m rule --add app="^Bitwarden$" manage=off
+

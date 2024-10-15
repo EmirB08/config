@@ -38,3 +38,4 @@ eval "$(zoxide init zsh)"
 eval "$(zoxide init zsh)"
 
 alias cd="z"
+
