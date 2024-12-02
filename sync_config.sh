@@ -1,12 +1,11 @@
 #!/bin/bash
 
-DOTFILES_DIR="$HOME/dotfiles"
+CONFIG_REPO="$HOME/config"
 CONFIG_DIR="$HOME/.config"
 OBSIDIAN_DIR="$HOME/Documents/Obsidian Vault/Programming"
-MARKDOWN_DIR="$DOTFILES_DIR/markdown"
+MARKDOWN_DIR="$CONFIG_REPO/markdown"
 
 files=(".zshrc" ".wezterm.lua" ".tmux.conf" ".p10k.zsh" ".zprofile")
-folders=(".tmux")
 config_folders=("nvim" "skhd" "yabai")
 markdown_files=("yabai nvim tmux.md")
 
@@ -14,15 +13,15 @@ copy_to_repo() {
   local changes_detected=false
 
   for file in "${files[@]}"; do
-    if [[ "$HOME/$file" -nt "$DOTFILES_DIR/$file" ]]; then
-      cp "$HOME/$file" "$DOTFILES_DIR/"
+    if [[ "$HOME/$file" -nt "$CONFIG_REPO/$file" ]]; then
+      cp "$HOME/$file" "$CONFIG_REPO/"
       echo "Updated: $file"
       changes_detected=true
     fi
   done
 
   for folder in "${folders[@]}"; do
-    if output=$(rsync -ai --checksum --exclude='plugins/*' "$HOME/$folder/" "$DOTFILES_DIR/$folder/" 2>/dev/null); then
+    if output=$(rsync -ai --checksum --exclude='plugins/*' "$HOME/$folder/" "$CONFIG_REPO/$folder/" 2>/dev/null); then
       if [[ -n "$output" ]]; then
         echo "Changes in $folder:"
         echo "$output" | awk '{print "  - " $NF}'
@@ -32,7 +31,7 @@ copy_to_repo() {
   done
 
   for folder in "${config_folders[@]}"; do
-    if output=$(rsync -ai --checksum "$CONFIG_DIR/$folder/" "$DOTFILES_DIR/.config/$folder/" 2>/dev/null); then
+    if output=$(rsync -ai --checksum "$CONFIG_DIR/$folder/" "$CONFIG_REPO/.config/$folder/" 2>/dev/null); then
       if [[ -n "$output" ]]; then
         echo "Changes in $folder:"
         echo "$output" | awk '{print "  - " $NF}'
@@ -50,7 +49,10 @@ copy_to_repo() {
     fi
   done
 
-  echo "Sync Complete - repo"
+  mkdir -p "$CONFIG_REPO/.tmux/plugins"
+  touch "$CONFIG_REPO/.tmux/plugins/.gitkeep"
+
+  echo "Sync - repo."
   if [[ "$changes_detected" = false ]]; then
     echo "No changes detected."
   fi
@@ -60,15 +62,15 @@ copy_to_home() {
   local changes_detected=false
 
   for file in "${files[@]}"; do
-    if [[ "$DOTFILES_DIR/$file" -nt "$HOME/$file" ]]; then
-      cp "$DOTFILES_DIR/$file" "$HOME/"
+    if [[ "$CONFIG_REPO/$file" -nt "$HOME/$file" ]]; then
+      cp "$CONFIG_REPO/$file" "$HOME/"
       echo "Updated: $file"
       changes_detected=true
     fi
   done
 
   for folder in "${folders[@]}"; do
-    if output=$(rsync -ai --checksum --exclude='plugins/*' "$DOTFILES_DIR/$folder/" "$HOME/$folder/" 2>/dev/null); then
+    if output=$(rsync -ai --checksum --exclude='plugins/*' "$CONFIG_REPO/$folder/" "$HOME/$folder/" 2>/dev/null); then
       if [[ -n "$output" ]]; then
         echo "Changes in $folder:"
         echo "$output" | awk '{print "  - " $NF}'
@@ -78,7 +80,7 @@ copy_to_home() {
   done
 
   for folder in "${config_folders[@]}"; do
-    if output=$(rsync -ai --checksum "$DOTFILES_DIR/.config/$folder/" "$CONFIG_DIR/$folder/" 2>/dev/null); then
+    if output=$(rsync -ai --checksum "$CONFIG_REPO/.config/$folder/" "$CONFIG_DIR/$folder/" 2>/dev/null); then
       if [[ -n "$output" ]]; then
         echo "Changes in $folder:"
         echo "$output" | awk '{print "  - " $NF}'
@@ -96,21 +98,21 @@ copy_to_home() {
     fi
   done
 
-  echo "Sync complete - home"
+  echo "Sync - home."
   if [[ "$changes_detected" = false ]]; then
     echo "No changes detected."
   fi
 }
 
 case "$1" in
-  "to-repo")
+  "repo")
     copy_to_repo
     ;;
-  "to-home")
+  "home")
     copy_to_home
     ;;
   *)
-    echo "Usage: $0 {to-repo|to-home}"
+    echo "Usage: $0 {repo|home}"
     exit 1
     ;;
 esac

@@ -1,45 +1,37 @@
-# Backup
-
-This script assumes a similar setup is already installed. It does not include the necessary installations, dependencies, or plugins for Tmux. For more information on a minimal config, see [Josean's dev env files](https://github.com/josean-dev/dev-environment-files).
-
-## Included Configurations
+# config
 
 - zsh (`.zshrc`, `.zprofile`)
 - tmux (`.tmux.conf`)
-- Neovim (`.config/nvim`)
-- Wezterm (`.wezterm.lua`)
-- Yabai (`.config/yabai`)
-- SKHD (`.config/skhd`)
-- Powerlevel10k (`p10k.zsh`)
+- neovim (`.config/nvim`)
+- wezterm (`.wezterm.lua`)
+- yabai (`.config/yabai`)
+- skhd (`.config/skhd`)
+- powerlevel10k (`p10k.zsh`)
 
-### Copying Files
-
-To manage these dotfiles, use the `manage_dotfiles.sh` script. First, make the script executable:
+### sync
 
 ```bash
-chmod +x manage_dotfiles.sh
+chmod +x sync_config.sh
 ```
 
-Then, you can use the following commands:
-
-**Copy all files from your home directory to this repository**:
+**Copy all files from home to repo**:
 ```bash
-./manage_dotfiles.sh to-repo
+./sync_config.sh repo
 ```
 
-**Copy a specific file from your home directory to this repository** (e.g., `.zshrc`):
+**Copy a specific file from home to repo**:
 ```bash
-./manage_dotfiles.sh to-repo .zshrc
+./sync_config.sh repo .zshrc
 ```
 
-**Copy all files from this repository to your home directory**:
+**Copy all files from repo to home**:
 ```bash
-./manage_dotfiles.sh to-home
+./sync_config.sh home
 ```
 
-**Copy a specific file from this repository to your home directory** (e.g., `.zshrc`):
+**Copy a specific file from repo to home**:
 ```bash
-./manage_dotfiles.sh to-home .zshrc
+./sync_config.sh home .zshrc
 ```
 
 ---
