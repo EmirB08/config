@@ -1,13 +1,13 @@
 #!/bin/bash
 
-CONFIG_REPO="$HOME/config"
-CONFIG_DIR="$HOME/.config"
+CONFIG_REPO="$HOME/Documents/github/config"
+CONFIG_DIR="$HOME/Documents/github/config/"
 OBSIDIAN_DIR="$HOME/Documents/Obsidian Vault/Programming"
 MARKDOWN_DIR="$CONFIG_REPO/markdown"
 
 files=(".zshrc" ".wezterm.lua" ".tmux.conf" ".p10k.zsh" ".zprofile")
-config_folders=("nvim" "skhd" "yabai")
-markdown_files=("yabai nvim tmux.md")
+config_folders=("nvim" "tmux")
+markdown_files=("tmux.md")
 
 copy_to_repo() {
   local changes_detected=false
